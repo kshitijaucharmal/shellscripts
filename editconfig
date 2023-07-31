@@ -1,0 +1,4 @@
+#!/bin/sh
+# To be run from the terminal
+file=`find $HOME/.config/ -type f | fzf -i`
+[ ${#file} != 0 ] && nvim $file

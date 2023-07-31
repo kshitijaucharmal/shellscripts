@@ -1,0 +1,27 @@
+#!/bin/bash
+#read -p "Enter Username: " u
+#read -p "Enter Password: " -s p
+
+u="8329969908"
+p="K5h1t1j@123"
+
+user="$u%40pict"
+#echo "$p" | openssl sha1
+p=`echo "$p" | sed 's/@/%40/'`
+
+echo "Getting Cookies..."
+curl --cookie-jar cookies.txt "https://uniboxlogin.wifi-soft.com//portals/PICT/index.php" > /dev/null
+cat cookies.txt
+
+echo "Attempting login..."
+curl -sL 'https://uniboxlogin.wifi-soft.com//portals/PICT/index.php' \
+    -d 'action=Login'  \
+    -d "username=$user"  \
+    -d "password=$p"  \
+    -d "passwd=$p"  \
+    -d 'controllerProfileId=3'  \
+    -d 'realm=pict'  \
+    -d "sid=$(cat cookies.txt | grep SSID | awk '{ print $7 }')"  \
+    -d "mobileno=$u"  \
+    -d 'button=Login' > /dev/null
+echo "Done."

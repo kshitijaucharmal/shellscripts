@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# Get the current tmux session ID
+session_id=$(tmux list-sessions | grep -oE '[0-9]+' | head -1)
+
+# Get the active pane ID
+pane_id=$(tmux list-panes -t "$session_id" | grep active | grep -oE '[0-9]+' | head -1)
+
+# Capture the text from the active pane
+text=$(tmux capture-pane -t "$session_id" -p)
+
+[ -z "$text" ] || $BROWSER $(echo $text | grep -o 'https://.* ?\S' | fzf)
