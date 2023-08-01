@@ -1,10 +1,10 @@
 #!/bin/sh
 
-WALLDIR="$HOME/pix/classic"
+WALLDIR="$HOME/pix/classic/Control"
 
 WALL="$(fd --type f -e jpg -e png -e jpeg . $WALLDIR | shuf | head -1q)"
 
 echo Setting Wallpaper $WALL
-[ $XDG_SESSION_TYPE = 'x11' ] && wal -steq -i $WALL || ~/repos/swww/target/release/swww img --resize crop --transition-step 15 --transition-fps 60 "$WALL"
+[ $XDG_SESSION_TYPE = 'x11' ] && xwallpaper --zoom $WALL || ~/repos/swww/target/release/swww img --resize crop --transition-step 15 --transition-fps 60 "$WALL"
 
 ln -sf "$WALL" ~/.wallpaper.jpg
