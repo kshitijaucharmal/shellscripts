@@ -1,0 +1,5 @@
+#!/bin/sh
+
+WIFINAME=`nmcli -t device wifi list | cut -d: -f 8 | dmenu`
+
+nmcli device wifi connect "$WIFINAME" && notify-send "Done."
