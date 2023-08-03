@@ -1,6 +1,6 @@
 #!/bin/sh
 
-WALLDIR="$HOME/pix/classic/Control"
+WALLDIR="$HOME/pix/classic/Luffy"
 
 WALL="$(fd --type f -e jpg -e png -e jpeg . $WALLDIR | shuf | head -1q)"
 
