@@ -25,5 +25,6 @@ case $extension in
     cpp | h | c) $(which make) ;;
     java)    $(which javac) $1 && $(which java) $filename ;;
     js)      $(which node) $1 ;;
+    mjs)     $(which node) $1 ;;
     sh)      $(which bash) $1 ;;
 esac
