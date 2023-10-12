@@ -1,10 +1,30 @@
 #!/bin/sh
 
-WALLDIR="$HOME/pix/classic/Luffy"
+WALLDIR="$HOME/pix/random_walls"
 
-WALL="$(fd --type f -e jpg -e png -e jpeg . $WALLDIR | shuf | head -1q)"
+random(){
+    WALL=`readlink -f "$(fd --type f -e jpg -e png -e jpeg . $WALLDIR | shuf | head -1q)"`
+}
+
+
+if [ ! -z $1 ]
+then
+    if [ -f $1 ]
+    then
+        WALL=`readlink -f $1`
+    else
+        random
+    fi
+else
+    random
+fi
+
+echo "wallpaper is $WALL"
+
+exit
+wal -i "$WALL"
 
 echo Setting Wallpaper $WALL
-[ $XDG_SESSION_TYPE = 'x11' ] && xwallpaper --zoom $WALL || ~/repos/swww/target/release/swww img --resize crop --transition-step 15 --transition-fps 60 "$WALL"
+[ $XDG_SESSION_TYPE = 'x11' ] && xwallpaper --zoom $WALL || swww img --resize crop --transition-step 15 --transition-fps 60 "$WALL"
 
 ln -sf "$WALL" ~/.wallpaper.jpg
