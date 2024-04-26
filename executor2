@@ -15,7 +15,7 @@ extension=`echo $1 | cut -d . -f2`
 case $extension in
     py)      $(which python) $1 ;;
     c)       $(which gcc) -o $filename $1 -lGL -lGLU -lglut && ./$filename;; # For opengl dev
-    rs)      $(which cargo) run ;;
+    rs)      cd $(git root); $(which cargo) r ;;
     lua)     $(which lua) $1 ;;
     cs)      $(which csc) $1 ;;
     pde)     $(which processing-java) --sketch=../$(pwd | rev | cut -d'/' -f1 | rev) --run ;;

@@ -5,7 +5,7 @@
 # https://stackoverflow.com/questions/255414/why-cant-i-change-directories-using-cd-in-a-script
 
 # tmux kill-server
-direc=`find $HOME/dox/programming -maxdepth 4 -type d | fzf -i`
+direc=`find $HOME/projects/ -maxdepth 3 -type d | fzf -i`
 if [ -d $direc ]
 then
     cd $direc

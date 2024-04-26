@@ -22,7 +22,7 @@ case $extension in
     cs)      $(which dotnet) run ;;
     pde)     $(which processing-java) --sketch=../$(pwd | rev | cut -d'/' -f1 | rev) --run ;;
     #cpp | h) $(which g++) -o $filename -lglfw -lGL -lm -lX11 -lpthread -lXi -lXrandr -ldl $1 && ./$filename ;;
-    cpp | h | c) $(which make) ;;
+    cpp | c) sh $(git root)/run.sh ;;
     java)    $(which javac) $1 && $(which java) $filename ;;
     js)      $(which node) $1 ;;
     mjs)     $(which node) $1 ;;

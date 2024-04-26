@@ -1,6 +1,6 @@
 #!/bin/sh
 
-WALLDIR="$HOME/pix/random_walls"
+WALLDIR="$HOME/Pictures/wallpapers"
 
 random(){
     WALL=`readlink -f "$(fd --type f -e jpg -e png -e jpeg . $WALLDIR | shuf | head -1q)"`
@@ -22,8 +22,10 @@ fi
 echo "wallpaper is $WALL"
 
 wal -i "$WALL"
+[ $XDG_SESSION_TYPE = 'x11' ] && xwallpaper --zoom $WALL || swww img --resize crop --transition-step 7 --transition-fps 165 --transition-type simple "$WALL"
 
 echo Setting Wallpaper $WALL
-[ $XDG_SESSION_TYPE = 'x11' ] && xwallpaper --zoom $WALL || swww img --resize crop --transition-step 15 --transition-fps 60 "$WALL"
 
 ln -sf "$WALL" ~/.wallpaper.jpg
+
+# My config specific
